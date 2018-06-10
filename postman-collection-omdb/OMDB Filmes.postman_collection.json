@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "6b18f2d7-61e7-4bf2-9d5e-ed630eb40390",
+		"name": "OMDB Filmes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://www.omdbapi.com/?t=Matrix&apikey=b8d7b5e1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10bff91f-cae8-432b-aea7-91ff3680203b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Canada\");",
+							"});",
+							"",
+							"pm.test(\"JSON body check\", function () {",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Verify if Title{} is Matrix\"] = jsonData.Title === \"Matrix\";",
+							"tests[\"Verify if Year{} is 1993-\"] = jsonData.Year === \"1993–\";",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.omdbapi.com/?t=Matrix&apikey=b8d7b5e1",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "t",
+							"value": "Matrix"
+						},
+						{
+							"key": "apikey",
+							"value": "b8d7b5e1"
+						}
+					]
+				},
+				"description": "Consulta ao filme Matrix"
+			},
+			"response": []
+		},
+		{
+			"name": "http://www.omdbapi.com?t=Batman&apikey=b8d7b5e1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa886453-18e3-4041-98f9-bd607761363e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"USA\");",
+							"});",
+							"",
+							"pm.test(\"JSON body check\", function () {",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Verify if Title{} is Batman\"] = jsonData.Title === \"Batman\";",
+							"tests[\"Verify if Year{} is 1989\"] = jsonData.Year === \"1989\";",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.omdbapi.com?t=Batman&apikey=b8d7b5e1",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"query": [
+						{
+							"key": "t",
+							"value": "Batman"
+						},
+						{
+							"key": "apikey",
+							"value": "b8d7b5e1"
+						}
+					]
+				},
+				"description": "Consulta ao filme Batman"
+			},
+			"response": []
+		}
+	]
+}
